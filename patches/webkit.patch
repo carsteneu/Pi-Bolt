@@ -144,7 +144,7 @@ Includes the engine changes of Pi-Bolt 0.7.4 (bolt-v0.7.4): internal names and c
 
 diff --git a/JSTests/microbenchmarks/array-length-increment-large.js b/JSTests/microbenchmarks/array-length-increment-large.js
 new file mode 100644
-index 0000000000..ebed95e18a
+index 00000000000..ebed95e18ad
 --- /dev/null
 +++ b/JSTests/microbenchmarks/array-length-increment-large.js
 @@ -0,0 +1,15 @@
@@ -165,7 +165,7 @@ index 0000000000..ebed95e18a
 +}
 diff --git a/JSTests/stress/array-set-length-grow-within-vector.js b/JSTests/stress/array-set-length-grow-within-vector.js
 new file mode 100644
-index 0000000000..5abccbdb84
+index 00000000000..5abccbdb84e
 --- /dev/null
 +++ b/JSTests/stress/array-set-length-grow-within-vector.js
 @@ -0,0 +1,73 @@
@@ -244,7 +244,7 @@ index 0000000000..5abccbdb84
 +}
 diff --git a/JSTests/stress/ftl-get-by-val-ic-typed-array-float-load-clobbers-fp-temp-register.js b/JSTests/stress/ftl-get-by-val-ic-typed-array-float-load-clobbers-fp-temp-register.js
 new file mode 100644
-index 0000000000..269bde9aa5
+index 00000000000..269bde9aa54
 --- /dev/null
 +++ b/JSTests/stress/ftl-get-by-val-ic-typed-array-float-load-clobbers-fp-temp-register.js
 @@ -0,0 +1,38 @@
@@ -287,7 +287,7 @@ index 0000000000..269bde9aa5
 +    }
 +}
 diff --git a/Source/JavaScriptCore/CMakeLists.txt b/Source/JavaScriptCore/CMakeLists.txt
-index 79c1f1a3cb..e00c2fdf0b 100644
+index 79c1f1a3cb8..e00c2fdf0b4 100644
 --- a/Source/JavaScriptCore/CMakeLists.txt
 +++ b/Source/JavaScriptCore/CMakeLists.txt
 @@ -425,6 +425,12 @@ set(LLIntSettingsExtractor_SOURCES
@@ -312,7 +312,7 @@ index 79c1f1a3cb..e00c2fdf0b 100644
      runtime/CallData.h
      runtime/CellSize.h
 diff --git a/Source/JavaScriptCore/aot/AOTCompiler.cpp b/Source/JavaScriptCore/aot/AOTCompiler.cpp
-index 944a17bfb4..e2b28a7eb2 100644
+index 944a17bfb4e..e2b28a7eb23 100644
 --- a/Source/JavaScriptCore/aot/AOTCompiler.cpp
 +++ b/Source/JavaScriptCore/aot/AOTCompiler.cpp
 @@ -32,8 +32,87 @@
@@ -624,7 +624,7 @@ index 944a17bfb4..e2b28a7eb2 100644
  }
  
 diff --git a/Source/JavaScriptCore/aot/AOTCompiler.h b/Source/JavaScriptCore/aot/AOTCompiler.h
-index 43919e8406..bce45c02f8 100644
+index 43919e8406f..bce45c02f88 100644
 --- a/Source/JavaScriptCore/aot/AOTCompiler.h
 +++ b/Source/JavaScriptCore/aot/AOTCompiler.h
 @@ -29,7 +29,8 @@ struct CompiledCode;
@@ -638,7 +638,7 @@ index 43919e8406..bce45c02f8 100644
  bool mayBecomePartOfAnother(UnlinkedCodeBlock*, const FunctionSummary*);
  void noteEverySiteOf(Graph&);
 diff --git a/Source/JavaScriptCore/aot/AOTConvention.h b/Source/JavaScriptCore/aot/AOTConvention.h
-index 2e95072fc9..2442b0290a 100644
+index 2e95072fc90..2442b0290a0 100644
 --- a/Source/JavaScriptCore/aot/AOTConvention.h
 +++ b/Source/JavaScriptCore/aot/AOTConvention.h
 @@ -7,7 +7,9 @@
@@ -754,7 +754,7 @@ index 2e95072fc9..2442b0290a 100644
      // Each parameter in its register. Whoever calls fills in undefined for what it has not got, and keeps what is left over to itself.
      Registers,
 diff --git a/Source/JavaScriptCore/aot/AOTEmitter.cpp b/Source/JavaScriptCore/aot/AOTEmitter.cpp
-index c74620a2f5..e00770008b 100644
+index c74620a2f5a..e00770008bd 100644
 --- a/Source/JavaScriptCore/aot/AOTEmitter.cpp
 +++ b/Source/JavaScriptCore/aot/AOTEmitter.cpp
 @@ -58,8 +58,9 @@ LValue Emitter::changing32(ptrdiff_t offset)
@@ -770,7 +770,7 @@ index c74620a2f5..e00770008b 100644
      return m_out.bitOr(m_out.zeroExtPtr(structureID), entry(Entry::StructureIDBase));
  }
 diff --git a/Source/JavaScriptCore/aot/AOTEscapeAnalysis.cpp b/Source/JavaScriptCore/aot/AOTEscapeAnalysis.cpp
-index fb3b1264be..84d0859c16 100644
+index fb3b1264be7..84d0859c160 100644
 --- a/Source/JavaScriptCore/aot/AOTEscapeAnalysis.cpp
 +++ b/Source/JavaScriptCore/aot/AOTEscapeAnalysis.cpp
 @@ -624,9 +624,22 @@ public:
@@ -808,7 +808,7 @@ index fb3b1264be..84d0859c16 100644
              if (!users)
                  users.emplace(graph);
 diff --git a/Source/JavaScriptCore/aot/AOTFunction.h b/Source/JavaScriptCore/aot/AOTFunction.h
-index dcf297ac5e..195195aaac 100644
+index dcf297ac5e9..195195aaac4 100644
 --- a/Source/JavaScriptCore/aot/AOTFunction.h
 +++ b/Source/JavaScriptCore/aot/AOTFunction.h
 @@ -159,8 +159,16 @@ struct ImageAddressInfo {
@@ -830,7 +830,7 @@ index dcf297ac5e..195195aaac 100644
  JS_EXPORT_PRIVATE uint32_t callSiteAt(const ImageFunction&, uint32_t offsetOfReturnAddress);
  JS_EXPORT_PRIVATE const RegisterAtOffsetList& adapterSavedRegisters();
 diff --git a/Source/JavaScriptCore/aot/AOTGraph.cpp b/Source/JavaScriptCore/aot/AOTGraph.cpp
-index d95a8ad60f..3fd802977f 100644
+index d95a8ad60f9..3fd802977f9 100644
 --- a/Source/JavaScriptCore/aot/AOTGraph.cpp
 +++ b/Source/JavaScriptCore/aot/AOTGraph.cpp
 @@ -652,6 +652,11 @@ const KnownFunction* Graph::knownCallee(const Node* node, bool* isExact) const
@@ -1130,7 +1130,7 @@ index d95a8ad60f..3fd802977f 100644
      UncheckedKeyHashMap<UnlinkedFunctionCodeBlock*, bool> m_canBeInlined;
      UncheckedKeyHashMap<unsigned, Node*, WTF::IntHash<unsigned>, WTF::UnsignedWithZeroKeyHashTraits<unsigned>> m_resultsOfInlinedCalls; // By the offset of the call.
 diff --git a/Source/JavaScriptCore/aot/AOTGraph.h b/Source/JavaScriptCore/aot/AOTGraph.h
-index 10cfe2379d..43a9411057 100644
+index 10cfe2379d5..43a94110577 100644
 --- a/Source/JavaScriptCore/aot/AOTGraph.h
 +++ b/Source/JavaScriptCore/aot/AOTGraph.h
 @@ -90,6 +90,13 @@ enum class GuardKind : uint8_t {
@@ -1217,7 +1217,7 @@ index 10cfe2379d..43a9411057 100644
  void promoteEnvironments(Graph&); // Sets Node::isPromoted.
  void scalarReplaceReadOnlyObjects(Graph&); // Runs before type inference.
 diff --git a/Source/JavaScriptCore/aot/AOTImage.cpp b/Source/JavaScriptCore/aot/AOTImage.cpp
-index bea4646b3a..8afea6df29 100644
+index bea4646b3af..8afea6df290 100644
 --- a/Source/JavaScriptCore/aot/AOTImage.cpp
 +++ b/Source/JavaScriptCore/aot/AOTImage.cpp
 @@ -34,6 +34,8 @@
@@ -1502,7 +1502,7 @@ index bea4646b3a..8afea6df29 100644
  
  #endif // ENABLE(FTL_JIT)
 diff --git a/Source/JavaScriptCore/aot/AOTImage.h b/Source/JavaScriptCore/aot/AOTImage.h
-index cce882109e..4e942585eb 100644
+index cce882109e0..4e942585eb1 100644
 --- a/Source/JavaScriptCore/aot/AOTImage.h
 +++ b/Source/JavaScriptCore/aot/AOTImage.h
 @@ -116,6 +116,10 @@ struct ImageRegExp {
@@ -1549,7 +1549,7 @@ index cce882109e..4e942585eb 100644
      JS_EXPORT_PRIVATE static std::optional<CodeForRegExp> codeForRegExp(const String& pattern, OptionSet<Yarr::Flags>); // From any image.
  
 diff --git a/Source/JavaScriptCore/aot/AOTInlining.cpp b/Source/JavaScriptCore/aot/AOTInlining.cpp
-index 5293958d8f..89d174ec32 100644
+index 5293958d8f5..89d174ec329 100644
 --- a/Source/JavaScriptCore/aot/AOTInlining.cpp
 +++ b/Source/JavaScriptCore/aot/AOTInlining.cpp
 @@ -35,6 +35,7 @@ public:
@@ -1925,7 +1925,7 @@ index 5293958d8f..89d174ec32 100644
  {
      // (A site has to have room to say which call it is in.)
 diff --git a/Source/JavaScriptCore/aot/AOTLoopOptimization.cpp b/Source/JavaScriptCore/aot/AOTLoopOptimization.cpp
-index 04a47f035c..6868252002 100644
+index 04a47f035c0..68682520024 100644
 --- a/Source/JavaScriptCore/aot/AOTLoopOptimization.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLoopOptimization.cpp
 @@ -123,83 +123,7 @@ private:
@@ -2022,7 +2022,7 @@ index 04a47f035c..6868252002 100644
                  guard->uses.clear();
                  instruction->guard = hoisted;
 diff --git a/Source/JavaScriptCore/aot/AOTLowerAccess.cpp b/Source/JavaScriptCore/aot/AOTLowerAccess.cpp
-index 6fd1998c0f..20044f3e46 100644
+index 6fd1998c0f3..20044f3e46e 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerAccess.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerAccess.cpp
 @@ -372,7 +372,7 @@ void Lowering::lowerGetById(Node* node)
@@ -2220,7 +2220,7 @@ index 6fd1998c0f..20044f3e46 100644
  
      m_out.appendTo(continuation);
 diff --git a/Source/JavaScriptCore/aot/AOTLowerArith.cpp b/Source/JavaScriptCore/aot/AOTLowerArith.cpp
-index 1f0ebd9817..d8e7c62777 100644
+index 1f0ebd9817e..d8e7c627779 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerArith.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerArith.cpp
 @@ -139,6 +139,29 @@ void Lowering::lowerBinaryArith(Node* node, VirtualRegister lhs, VirtualRegister
@@ -2320,7 +2320,7 @@ index 1f0ebd9817..d8e7c62777 100644
  
  void Lowering::lowerUnaryArith(Node* node, VirtualRegister operandRegister)
 diff --git a/Source/JavaScriptCore/aot/AOTLowerBuiltins.cpp b/Source/JavaScriptCore/aot/AOTLowerBuiltins.cpp
-index 8a4d3a1c0d..6e1211ca0b 100644
+index 8a4d3a1c0d3..6e1211ca0bf 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerBuiltins.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerBuiltins.cpp
 @@ -545,11 +545,11 @@ bool Lowering::lowerCallOfBuiltin(Node* node, Node* calleeNode, unsigned argc, u
@@ -2353,7 +2353,7 @@ index 8a4d3a1c0d..6e1211ca0b 100644
              answers.append(m_out.anchor(m_out.booleanFalse));
              m_out.branch(m_out.aboveOrEqual(length, needed), unsure(isLongEnough), unsure(settled));
 diff --git a/Source/JavaScriptCore/aot/AOTLowerCalls.cpp b/Source/JavaScriptCore/aot/AOTLowerCalls.cpp
-index 26a637003c..4c9b5bd479 100644
+index 26a637003ce..4c9b5bd4790 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerCalls.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerCalls.cpp
 @@ -51,8 +51,9 @@ void Lowering::finishCall(PatchpointValue* patchpoint, CallMode mode, Rep result
@@ -2385,7 +2385,7 @@ index 26a637003c..4c9b5bd479 100644
              if (!isSubtype(typeOfCallee, TCell)) {
                  LBasicBlock isCellCase = m_out.newBlock();
 diff --git a/Source/JavaScriptCore/aot/AOTLowerCore.cpp b/Source/JavaScriptCore/aot/AOTLowerCore.cpp
-index 9c341c2ac9..2dffb741d1 100644
+index 9c341c2ac97..2dffb741d16 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerCore.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerCore.cpp
 @@ -499,6 +499,70 @@ static bool mayLookAtStack(Stub stub)
@@ -2678,7 +2678,7 @@ index 9c341c2ac9..2dffb741d1 100644
  
      auto setCurrentNode = [&](Node* node) {
 diff --git a/Source/JavaScriptCore/aot/AOTLowerGuards.cpp b/Source/JavaScriptCore/aot/AOTLowerGuards.cpp
-index 6e8573ca98..eadecef405 100644
+index 6e8573ca988..eadecef405c 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerGuards.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerGuards.cpp
 @@ -9,6 +9,8 @@
@@ -2798,7 +2798,7 @@ index 6e8573ca98..eadecef405 100644
          return loadLazily(bytecode.m_offset);
      StaticVariable variable = resolveStatically(bytecode.m_var, bytecode.m_localScopeDepth, type);
 diff --git a/Source/JavaScriptCore/aot/AOTLowerMisc.cpp b/Source/JavaScriptCore/aot/AOTLowerMisc.cpp
-index 84cbb0c8a0..c6c97aa762 100644
+index 84cbb0c8a02..c6c97aa762a 100644
 --- a/Source/JavaScriptCore/aot/AOTLowerMisc.cpp
 +++ b/Source/JavaScriptCore/aot/AOTLowerMisc.cpp
 @@ -601,7 +601,7 @@ void Lowering::emitTypeTests(std::nullptr_t, Type typeOfValue, LValue jsValue, u
@@ -2811,7 +2811,7 @@ index 84cbb0c8a0..c6c97aa762 100644
                      if (mayBe(others, kind.type))
                          passIf(isType(kind.jsType));
 diff --git a/Source/JavaScriptCore/aot/AOTLowering.h b/Source/JavaScriptCore/aot/AOTLowering.h
-index 237691d56c..17ad851551 100644
+index 237691d56c4..17ad851551e 100644
 --- a/Source/JavaScriptCore/aot/AOTLowering.h
 +++ b/Source/JavaScriptCore/aot/AOTLowering.h
 @@ -141,6 +141,7 @@ private:
@@ -2823,7 +2823,7 @@ index 237691d56c..17ad851551 100644
  
      TypedPointer addressFor(VirtualRegister); // The address of a register that lives in the frame (Graph::livesInFrame()).
 diff --git a/Source/JavaScriptCore/aot/AOTOperationsObjects.h b/Source/JavaScriptCore/aot/AOTOperationsObjects.h
-index 635ef7cef4..d8e78126f0 100644
+index 635ef7cef42..d8e78126f09 100644
 --- a/Source/JavaScriptCore/aot/AOTOperationsObjects.h
 +++ b/Source/JavaScriptCore/aot/AOTOperationsObjects.h
 @@ -20,6 +20,8 @@ class VM;
@@ -2836,7 +2836,7 @@ index 635ef7cef4..d8e78126f0 100644
  
  // The operations behind every instruction that is not arithmetic, a plain property access or a variable access. What they have
 diff --git a/Source/JavaScriptCore/aot/AOTProgram.cpp b/Source/JavaScriptCore/aot/AOTProgram.cpp
-index 7d50baee24..f39918a262 100644
+index 7d50baee24d..f39918a262c 100644
 --- a/Source/JavaScriptCore/aot/AOTProgram.cpp
 +++ b/Source/JavaScriptCore/aot/AOTProgram.cpp
 @@ -83,6 +83,18 @@ const NumbersOfIdentifiers* numbersOfIdentifiersOfProgram()
@@ -2934,7 +2934,7 @@ index 7d50baee24..f39918a262 100644
  {
      Locker locker { m_lock };
 diff --git a/Source/JavaScriptCore/aot/AOTProgram.h b/Source/JavaScriptCore/aot/AOTProgram.h
-index 6585df2494..38835bcc29 100644
+index 6585df24949..38835bcc290 100644
 --- a/Source/JavaScriptCore/aot/AOTProgram.h
 +++ b/Source/JavaScriptCore/aot/AOTProgram.h
 @@ -10,6 +10,8 @@
@@ -3051,7 +3051,7 @@ index 6585df2494..38835bcc29 100644
  // program's identifiers have been numbered, all functions share one table. The shared table is built by StaticHeap, so such code
  // can only run with a static heap.
 diff --git a/Source/JavaScriptCore/aot/AOTRuntime.cpp b/Source/JavaScriptCore/aot/AOTRuntime.cpp
-index 6b48e7b145..54e75eb396 100644
+index 6b48e7b145c..54e75eb396a 100644
 --- a/Source/JavaScriptCore/aot/AOTRuntime.cpp
 +++ b/Source/JavaScriptCore/aot/AOTRuntime.cpp
 @@ -10,7 +10,11 @@
@@ -3416,7 +3416,7 @@ index 6b48e7b145..54e75eb396 100644
      } else if (!Data::create(instance, executable, unlinkedCodeBlock, code.get()))
          return false;
 diff --git a/Source/JavaScriptCore/aot/AOTRuntime.h b/Source/JavaScriptCore/aot/AOTRuntime.h
-index d96ea043c6..c17acc2a26 100644
+index d96ea043c64..c17acc2a26d 100644
 --- a/Source/JavaScriptCore/aot/AOTRuntime.h
 +++ b/Source/JavaScriptCore/aot/AOTRuntime.h
 @@ -290,7 +290,15 @@ RuntimeTable& runtimeTable(VM&);
@@ -3463,7 +3463,7 @@ index d96ea043c6..c17acc2a26 100644
  private:
      void* m_code;
 diff --git a/Source/JavaScriptCore/aot/AOTStubs.cpp b/Source/JavaScriptCore/aot/AOTStubs.cpp
-index 1b472efc1f..01ebef1664 100644
+index 1b472efc1f9..01ebef1664a 100644
 --- a/Source/JavaScriptCore/aot/AOTStubs.cpp
 +++ b/Source/JavaScriptCore/aot/AOTStubs.cpp
 @@ -101,6 +101,17 @@ static void loadInstance(CCallHelpers& jit, GPRReg result)
@@ -3801,7 +3801,7 @@ index 1b472efc1f..01ebef1664 100644
      UNUSED_PARAM(base);
      UNUSED_PARAM(instruction);
 diff --git a/Source/JavaScriptCore/aot/AOTStubs.h b/Source/JavaScriptCore/aot/AOTStubs.h
-index fddb0880c7..0d9c5f1037 100644
+index fddb0880c7e..0d9c5f10377 100644
 --- a/Source/JavaScriptCore/aot/AOTStubs.h
 +++ b/Source/JavaScriptCore/aot/AOTStubs.h
 @@ -75,8 +75,16 @@ StubIntrinsic stubIntrinsicFor(UniquedStringImpl* name, unsigned argumentCountIn
@@ -3895,7 +3895,7 @@ index fddb0880c7..0d9c5f1037 100644
  static constexpr size_t roomToSpareInReachOfStubCall = 24 * MB; // A target considered in range stays in range if it ends up this much further away.
 diff --git a/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
 new file mode 100644
-index 0000000000..bdd92d37d3
+index 00000000000..bdd92d37d3a
 --- /dev/null
 +++ b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
 @@ -0,0 +1,3514 @@
@@ -7414,7 +7414,7 @@ index 0000000000..bdd92d37d3
 +
 +#endif // CPU(X86_64)
 diff --git a/Source/JavaScriptCore/aot/AOTThunks.cpp b/Source/JavaScriptCore/aot/AOTThunks.cpp
-index bbf2c72bbd..76a49342e7 100644
+index bbf2c72bbd5..76a49342e73 100644
 --- a/Source/JavaScriptCore/aot/AOTThunks.cpp
 +++ b/Source/JavaScriptCore/aot/AOTThunks.cpp
 @@ -541,9 +541,333 @@ void installOperationFrontEnds(VM& vm, void** entries)
@@ -7753,7 +7753,7 @@ index bbf2c72bbd..76a49342e7 100644
  #endif // CPU(ARM64)
  
 diff --git a/Source/JavaScriptCore/aot/AOTThunks.h b/Source/JavaScriptCore/aot/AOTThunks.h
-index f32370ede3..f1e750f0f5 100644
+index f32370ede32..f1e750f0f5a 100644
 --- a/Source/JavaScriptCore/aot/AOTThunks.h
 +++ b/Source/JavaScriptCore/aot/AOTThunks.h
 @@ -23,11 +23,22 @@ namespace AOT {
@@ -7782,7 +7782,7 @@ index f32370ede3..f1e750f0f5 100644
  } } // namespace JSC::AOT
  
 diff --git a/Source/JavaScriptCore/aot/AOTTypeInference.cpp b/Source/JavaScriptCore/aot/AOTTypeInference.cpp
-index 8db0635296..98879bfe5e 100644
+index 8db06352968..98879bfe5ef 100644
 --- a/Source/JavaScriptCore/aot/AOTTypeInference.cpp
 +++ b/Source/JavaScriptCore/aot/AOTTypeInference.cpp
 @@ -32,6 +32,8 @@ public:
@@ -7885,7 +7885,7 @@ index 8db0635296..98879bfe5e 100644
      UncheckedKeyHashMap<Node*, Type> m_elementTypes; // Of the arrays that the function makes: everything it puts in them.
      bool m_elementTypesChanged { false };
 diff --git a/Source/JavaScriptCore/assembler/ProbeContext.cpp b/Source/JavaScriptCore/assembler/ProbeContext.cpp
-index b52b4897a1..e67bce685f 100644
+index b52b4897a11..e67bce685f2 100644
 --- a/Source/JavaScriptCore/assembler/ProbeContext.cpp
 +++ b/Source/JavaScriptCore/assembler/ProbeContext.cpp
 @@ -28,6 +28,7 @@
@@ -7907,7 +7907,7 @@ index b52b4897a1..e67bce685f 100644
  #if CPU(ARM64)
      // The ARM64 probe trampoline does not support changing both lr and pc.
 diff --git a/Source/JavaScriptCore/b3/B3AbstractHeapRepository.h b/Source/JavaScriptCore/b3/B3AbstractHeapRepository.h
-index 413895dd46..1eb8b27733 100644
+index 413895dd467..1eb8b27733d 100644
 --- a/Source/JavaScriptCore/b3/B3AbstractHeapRepository.h
 +++ b/Source/JavaScriptCore/b3/B3AbstractHeapRepository.h
 @@ -76,6 +76,8 @@ namespace JSC::B3 {
@@ -7920,7 +7920,7 @@ index 413895dd46..1eb8b27733 100644
      macro(FunctionRareData_allocator, FunctionRareData::offsetOfObjectAllocationProfile() + ObjectAllocationProfileWithPrototype::offsetOfAllocator(), Mutability::Mutable) \
      macro(FunctionRareData_structure, FunctionRareData::offsetOfObjectAllocationProfile() + ObjectAllocationProfileWithPrototype::offsetOfStructure(), Mutability::Mutable) \
 diff --git a/Source/JavaScriptCore/bytecode/CallLinkInfo.cpp b/Source/JavaScriptCore/bytecode/CallLinkInfo.cpp
-index f24bdf71f7..81e557684b 100644
+index f24bdf71f78..81e557684bb 100644
 --- a/Source/JavaScriptCore/bytecode/CallLinkInfo.cpp
 +++ b/Source/JavaScriptCore/bytecode/CallLinkInfo.cpp
 @@ -654,7 +654,10 @@ void DirectCallLinkInfo::setCallTarget(CodeBlock* codeBlock, CodeLocationLabel<J
@@ -7936,7 +7936,7 @@ index f24bdf71f7..81e557684b 100644
  #endif
          MacroAssembler::repatchNearCall(m_callLocation, target);
 diff --git a/Source/JavaScriptCore/bytecode/SpeculatedType.h b/Source/JavaScriptCore/bytecode/SpeculatedType.h
-index 354a93eba7..7cf380bb8a 100644
+index 354a93eba75..7cf380bb8a1 100644
 --- a/Source/JavaScriptCore/bytecode/SpeculatedType.h
 +++ b/Source/JavaScriptCore/bytecode/SpeculatedType.h
 @@ -31,6 +31,7 @@
@@ -7948,7 +7948,7 @@ index 354a93eba7..7cf380bb8a 100644
  namespace JSC {
  
 diff --git a/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.cpp b/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.cpp
-index c7ff1cad28..0711a0f670 100644
+index c7ff1cad287..0711a0f6701 100644
 --- a/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.cpp
 +++ b/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.cpp
 @@ -186,7 +186,13 @@ void UnlinkedFunctionExecutable::visitChildrenImpl(JSCell* cell, Visitor& visito
@@ -7967,7 +7967,7 @@ index c7ff1cad28..0711a0f670 100644
              if (!unlinkedCodeBlock)
                  return;
 diff --git a/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.h b/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.h
-index 43fe47367d..a908f8f571 100644
+index 43fe47367d7..a908f8f5711 100644
 --- a/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.h
 +++ b/Source/JavaScriptCore/bytecode/UnlinkedFunctionExecutable.h
 @@ -352,10 +352,33 @@ public:
@@ -8006,7 +8006,7 @@ index 43fe47367d..a908f8f571 100644
  
      struct RareData {
 diff --git a/Source/JavaScriptCore/bytecode/UnlinkedGlobalCodeBlock.h b/Source/JavaScriptCore/bytecode/UnlinkedGlobalCodeBlock.h
-index 3746be46cc..fbd0c5c900 100644
+index 3746be46cc9..fbd0c5c900d 100644
 --- a/Source/JavaScriptCore/bytecode/UnlinkedGlobalCodeBlock.h
 +++ b/Source/JavaScriptCore/bytecode/UnlinkedGlobalCodeBlock.h
 @@ -81,8 +81,9 @@ private:
@@ -8022,7 +8022,7 @@ index 3746be46cc..fbd0c5c900 100644
  
  }
 diff --git a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h b/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
-index a326fc023a..2de7792972 100644
+index a326fc023a1..2de77929724 100644
 --- a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
 +++ b/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
 @@ -6400,7 +6400,11 @@ void AbstractInterpreter<AbstractStateType>::executeDoubleUnaryOpEffects(Node* n
@@ -8039,7 +8039,7 @@ index a326fc023a..2de7792972 100644
      }
      SpeculatedType type;
 diff --git a/Source/JavaScriptCore/ffi/FFICallHost.cpp b/Source/JavaScriptCore/ffi/FFICallHost.cpp
-index f8e046f978..6f0a26fb9a 100644
+index f8e046f9787..6f0a26fb9ab 100644
 --- a/Source/JavaScriptCore/ffi/FFICallHost.cpp
 +++ b/Source/JavaScriptCore/ffi/FFICallHost.cpp
 @@ -78,7 +78,7 @@ static ALWAYS_INLINE EncodedJSValue ffiCall(JSGlobalObject* globalObject, CallFr
@@ -8061,7 +8061,7 @@ index f8e046f978..6f0a26fb9a 100644
  
      RELEASE_AND_RETURN(scope, JSValue::encode(jsValueFromSlot(globalObject, context, signature.returnType(), slots[argumentCount])));
 diff --git a/Source/JavaScriptCore/ftl/FTLLowerDFGToB3.cpp b/Source/JavaScriptCore/ftl/FTLLowerDFGToB3.cpp
-index b894755248..2b1d40c454 100644
+index b894755248b..2b1d40c4549 100644
 --- a/Source/JavaScriptCore/ftl/FTLLowerDFGToB3.cpp
 +++ b/Source/JavaScriptCore/ftl/FTLLowerDFGToB3.cpp
 @@ -2941,6 +2941,7 @@ private:
@@ -8369,7 +8369,7 @@ index b894755248..2b1d40c454 100644
          patchpoint->effects.terminal = true;
          if (actualAllocator.isConstant())
 diff --git a/Source/JavaScriptCore/heap/StaticHeap.cpp b/Source/JavaScriptCore/heap/StaticHeap.cpp
-index 96edcf1624..8f1415aa47 100644
+index 96edcf16247..8f1415aa47c 100644
 --- a/Source/JavaScriptCore/heap/StaticHeap.cpp
 +++ b/Source/JavaScriptCore/heap/StaticHeap.cpp
 @@ -14,6 +14,7 @@
@@ -9069,7 +9069,7 @@ index 96edcf1624..8f1415aa47 100644
  }
  
 diff --git a/Source/JavaScriptCore/heap/StaticHeap.h b/Source/JavaScriptCore/heap/StaticHeap.h
-index b4c5c6697e..e319bf4a3d 100644
+index b4c5c6697e4..e319bf4a3d9 100644
 --- a/Source/JavaScriptCore/heap/StaticHeap.h
 +++ b/Source/JavaScriptCore/heap/StaticHeap.h
 @@ -7,6 +7,7 @@
@@ -9192,7 +9192,7 @@ index b4c5c6697e..e319bf4a3d 100644
      JS_EXPORT_PRIVATE static const RowOfFunction* s_rowsOfFunctions;
      JS_EXPORT_PRIVATE static VM* s_vm;
 diff --git a/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp b/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp
-index dab620a1df..f678854542 100644
+index dab620a1df9..f6788545424 100644
 --- a/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp
 +++ b/Source/JavaScriptCore/heap/StructureAlignedMemoryAllocator.cpp
 @@ -117,9 +117,10 @@ public:
@@ -9209,7 +9209,7 @@ index dab620a1df..f678854542 100644
                  ));
              if (g_jscConfig.startOfStructureHeap)
 diff --git a/Source/JavaScriptCore/inspector/remote/socket/RemoteInspectorSocket.cpp b/Source/JavaScriptCore/inspector/remote/socket/RemoteInspectorSocket.cpp
-index 6af090ce50..b911c57744 100644
+index 6af090ce506..b911c577441 100644
 --- a/Source/JavaScriptCore/inspector/remote/socket/RemoteInspectorSocket.cpp
 +++ b/Source/JavaScriptCore/inspector/remote/socket/RemoteInspectorSocket.cpp
 @@ -51,7 +51,9 @@ RemoteInspector& RemoteInspector::singleton()
@@ -9224,7 +9224,7 @@ index 6af090ce50..b911c57744 100644
  }
  
 diff --git a/Source/JavaScriptCore/interpreter/CallFrame.cpp b/Source/JavaScriptCore/interpreter/CallFrame.cpp
-index a04b3f56f8..150655018e 100644
+index a04b3f56f88..150655018e1 100644
 --- a/Source/JavaScriptCore/interpreter/CallFrame.cpp
 +++ b/Source/JavaScriptCore/interpreter/CallFrame.cpp
 @@ -26,6 +26,8 @@
@@ -9249,7 +9249,7 @@ index a04b3f56f8..150655018e 100644
      return true;
  #else
 diff --git a/Source/JavaScriptCore/interpreter/StackVisitor.cpp b/Source/JavaScriptCore/interpreter/StackVisitor.cpp
-index 202516f58d..470a920f56 100644
+index 202516f58df..470a920f562 100644
 --- a/Source/JavaScriptCore/interpreter/StackVisitor.cpp
 +++ b/Source/JavaScriptCore/interpreter/StackVisitor.cpp
 @@ -106,7 +106,7 @@ StackVisitor::StackVisitor(CallFrame* startFrame, VM& vm, bool skipFirstFrame)
@@ -9275,7 +9275,7 @@ index 202516f58d..470a920f56 100644
  #endif
      return m_codeBlock;
 diff --git a/Source/JavaScriptCore/parser/VariableEnvironment.cpp b/Source/JavaScriptCore/parser/VariableEnvironment.cpp
-index 902b8f938f..c08b9484e4 100644
+index 902b8f938fa..c08b9484e41 100644
 --- a/Source/JavaScriptCore/parser/VariableEnvironment.cpp
 +++ b/Source/JavaScriptCore/parser/VariableEnvironment.cpp
 @@ -226,7 +226,7 @@ void CompactTDZEnvironment::sortCompact(Compact& compact)
@@ -9288,7 +9288,7 @@ index 902b8f938f..c08b9484e4 100644
          return key.get();
      });
 diff --git a/Source/JavaScriptCore/parser/VariableEnvironment.h b/Source/JavaScriptCore/parser/VariableEnvironment.h
-index 1dda303c94..29709a14fc 100644
+index 1dda303c946..29709a14fcf 100644
 --- a/Source/JavaScriptCore/parser/VariableEnvironment.h
 +++ b/Source/JavaScriptCore/parser/VariableEnvironment.h
 @@ -35,6 +35,16 @@
@@ -9336,7 +9336,7 @@ index 1dda303c94..29709a14fc 100644
      using Variables = Variant<Compact, Inflated>;
  
 diff --git a/Source/JavaScriptCore/runtime/CachedTypes.cpp b/Source/JavaScriptCore/runtime/CachedTypes.cpp
-index 696ac7a731..157c7a8691 100644
+index 696ac7a7317..157c7a86916 100644
 --- a/Source/JavaScriptCore/runtime/CachedTypes.cpp
 +++ b/Source/JavaScriptCore/runtime/CachedTypes.cpp
 @@ -26,6 +26,7 @@
@@ -9748,7 +9748,7 @@ index 696ac7a731..157c7a8691 100644
  {
      return std::bit_cast<const BuiltinFunctionCacheEntry*>(decoder.ptrForOffsetFromBase(decoder.entryOffset()))->matchesAssumedType();
 diff --git a/Source/JavaScriptCore/runtime/CachedTypes.h b/Source/JavaScriptCore/runtime/CachedTypes.h
-index e572aae01e..e25ef778b7 100644
+index e572aae01ed..e25ef778b73 100644
 --- a/Source/JavaScriptCore/runtime/CachedTypes.h
 +++ b/Source/JavaScriptCore/runtime/CachedTypes.h
 @@ -26,10 +26,12 @@
@@ -9807,7 +9807,7 @@ index e572aae01e..e25ef778b7 100644
  JS_EXPORT_PRIVATE std::optional<size_t> aotImageSize(std::span<const uint8_t> image);
  #endif
 diff --git a/Source/JavaScriptCore/runtime/CodeCache.cpp b/Source/JavaScriptCore/runtime/CodeCache.cpp
-index 506caee0e1..e69478516b 100644
+index 506caee0e13..e69478516be 100644
 --- a/Source/JavaScriptCore/runtime/CodeCache.cpp
 +++ b/Source/JavaScriptCore/runtime/CodeCache.cpp
 @@ -97,6 +97,8 @@ static void generateUnlinkedCodeBlocksOfFunction(VM& vm, UnlinkedFunctionExecuta
@@ -9820,7 +9820,7 @@ index 506caee0e1..e69478516b 100644
          generateUnlinkedCodeBlockForFunctions(vm, unlinkedFunctionCodeBlock, source, codeGenerationMode, error, depth - 1, optimize);
      // When all the code there is going to be is generated now: also what `new` runs, of a function that looks as if it is
 diff --git a/Source/JavaScriptCore/runtime/CyclicModuleRecord.cpp b/Source/JavaScriptCore/runtime/CyclicModuleRecord.cpp
-index fb79b0270d..16a64d2446 100644
+index fb79b0270d2..16a64d2446f 100644
 --- a/Source/JavaScriptCore/runtime/CyclicModuleRecord.cpp
 +++ b/Source/JavaScriptCore/runtime/CyclicModuleRecord.cpp
 @@ -476,7 +476,8 @@ void CyclicModuleRecord::initializeEnvironment(JSGlobalObject* globalObject, Ref
@@ -9834,7 +9834,7 @@ index fb79b0270d..16a64d2446 100644
      if (initializeVarsByOffset) {
          for (unsigned i = 0; i < unlinkedCodeBlock->numberOfVarScopeOffsets(); ++i)
 diff --git a/Source/JavaScriptCore/runtime/FunctionRareData.cpp b/Source/JavaScriptCore/runtime/FunctionRareData.cpp
-index 686f766a35..d12e2a2b56 100644
+index 686f766a35d..d12e2a2b566 100644
 --- a/Source/JavaScriptCore/runtime/FunctionRareData.cpp
 +++ b/Source/JavaScriptCore/runtime/FunctionRareData.cpp
 @@ -33,6 +33,11 @@
@@ -9850,7 +9850,7 @@ index 686f766a35..d12e2a2b56 100644
  
  FunctionRareData* FunctionRareData::create(VM& vm, ExecutableBase* executable)
 diff --git a/Source/JavaScriptCore/runtime/FunctionRareData.h b/Source/JavaScriptCore/runtime/FunctionRareData.h
-index 9964144486..24df457f37 100644
+index 99641444863..24df457f378 100644
 --- a/Source/JavaScriptCore/runtime/FunctionRareData.h
 +++ b/Source/JavaScriptCore/runtime/FunctionRareData.h
 @@ -115,7 +115,7 @@ public:
@@ -9863,7 +9863,7 @@ index 9964144486..24df457f37 100644
      bool hasReifiedLength() const { return m_hasReifiedLength; }
      void setHasReifiedLength() { m_hasReifiedLength = true; }
 diff --git a/Source/JavaScriptCore/runtime/IntlObject.cpp b/Source/JavaScriptCore/runtime/IntlObject.cpp
-index 40a58704e5..07c71d9963 100644
+index 40a58704e54..07c71d99638 100644
 --- a/Source/JavaScriptCore/runtime/IntlObject.cpp
 +++ b/Source/JavaScriptCore/runtime/IntlObject.cpp
 @@ -63,6 +63,9 @@
@@ -9960,7 +9960,7 @@ index 40a58704e5..07c71d9963 100644
                  continue;
              availableLocales->add(locale);
 diff --git a/Source/JavaScriptCore/runtime/JSArray.cpp b/Source/JavaScriptCore/runtime/JSArray.cpp
-index f3ac1fada1..1a0fb6ea3a 100644
+index f3ac1fada1d..1a0fb6ea3a3 100644
 --- a/Source/JavaScriptCore/runtime/JSArray.cpp
 +++ b/Source/JavaScriptCore/runtime/JSArray.cpp
 @@ -1276,6 +1276,7 @@ bool JSArray::setLength(JSGlobalObject* globalObject, unsigned newLength, bool t
@@ -9972,7 +9972,7 @@ index f3ac1fada1..1a0fb6ea3a 100644
              RELEASE_AND_RETURN(scope, setLengthWithArrayStorage(
                  globalObject, newLength, throwException,
 diff --git a/Source/JavaScriptCore/runtime/MegamorphicCache.cpp b/Source/JavaScriptCore/runtime/MegamorphicCache.cpp
-index 351824d683..d4230abfe7 100644
+index 351824d6839..d4230abfe70 100644
 --- a/Source/JavaScriptCore/runtime/MegamorphicCache.cpp
 +++ b/Source/JavaScriptCore/runtime/MegamorphicCache.cpp
 @@ -26,6 +26,7 @@
@@ -9984,7 +9984,7 @@ index 351824d683..d4230abfe7 100644
  
  #include <wtf/TZoneMallocInlines.h>
 diff --git a/Source/JavaScriptCore/runtime/Options.cpp b/Source/JavaScriptCore/runtime/Options.cpp
-index 5dbdc3ecdc..546abe7074 100644
+index 5dbdc3ecdc9..546abe70741 100644
 --- a/Source/JavaScriptCore/runtime/Options.cpp
 +++ b/Source/JavaScriptCore/runtime/Options.cpp
 @@ -824,6 +824,10 @@ void Options::notifyOptionsChanged()
@@ -9999,7 +9999,7 @@ index 5dbdc3ecdc..546abe7074 100644
      Options::useJIT() = false;
  #endif
 diff --git a/Source/JavaScriptCore/runtime/OptionsList.h b/Source/JavaScriptCore/runtime/OptionsList.h
-index 7ac0274b6e..812cfdaf6f 100644
+index 7ac0274b6e6..812cfdaf6f7 100644
 --- a/Source/JavaScriptCore/runtime/OptionsList.h
 +++ b/Source/JavaScriptCore/runtime/OptionsList.h
 @@ -146,13 +146,20 @@ bool hasCapacityToUseLargeGigacage();
@@ -10037,7 +10037,7 @@ index 7ac0274b6e..812cfdaf6f 100644
      \
      v(Unsigned, repatchCountForCoolDown, 8, Normal, nullptr) \
 diff --git a/Source/JavaScriptCore/runtime/PrototypeKey.h b/Source/JavaScriptCore/runtime/PrototypeKey.h
-index 2fe8317eea..37fd7f51b9 100644
+index 2fe8317eeae..37fd7f51b91 100644
 --- a/Source/JavaScriptCore/runtime/PrototypeKey.h
 +++ b/Source/JavaScriptCore/runtime/PrototypeKey.h
 @@ -64,7 +64,8 @@ public:
@@ -10051,7 +10051,7 @@ index 2fe8317eea..37fd7f51b9 100644
      
  private:
 diff --git a/Source/JavaScriptCore/runtime/RegExp.cpp b/Source/JavaScriptCore/runtime/RegExp.cpp
-index 352a5f60a7..46f3f7c3ab 100644
+index 352a5f60a79..46f3f7c3abd 100644
 --- a/Source/JavaScriptCore/runtime/RegExp.cpp
 +++ b/Source/JavaScriptCore/runtime/RegExp.cpp
 @@ -31,6 +31,10 @@
@@ -10197,7 +10197,7 @@ index 352a5f60a7..46f3f7c3ab 100644
      if (!pattern.containsUnsignedLengthPattern() && Options::useRegExpJIT()
  #if !ENABLE(YARR_JIT_BACKREFERENCES)
 diff --git a/Source/JavaScriptCore/runtime/RegExp.h b/Source/JavaScriptCore/runtime/RegExp.h
-index 91f6c257d8..5c3e48806a 100644
+index 91f6c257d8d..5c3e48806a4 100644
 --- a/Source/JavaScriptCore/runtime/RegExp.h
 +++ b/Source/JavaScriptCore/runtime/RegExp.h
 @@ -213,6 +213,8 @@ WTF_ALLOW_UNSAFE_BUFFER_USAGE_END
@@ -10224,7 +10224,7 @@ index 91f6c257d8..5c3e48806a 100644
  #if ENABLE(YARR_JIT)
      std::unique_ptr<Yarr::YarrCodeBlock> m_regExpJITCode;
 diff --git a/Source/JavaScriptCore/runtime/RegExpInlines.h b/Source/JavaScriptCore/runtime/RegExpInlines.h
-index 60568923b7..3832ade534 100644
+index 60568923b72..3832ade5341 100644
 --- a/Source/JavaScriptCore/runtime/RegExpInlines.h
 +++ b/Source/JavaScriptCore/runtime/RegExpInlines.h
 @@ -28,6 +28,7 @@
@@ -10308,7 +10308,7 @@ index 60568923b7..3832ade534 100644
              if (startOffset || !isAnchoredWord(s))
 diff --git a/Source/JavaScriptCore/runtime/ReportableSitesOfFunction.h b/Source/JavaScriptCore/runtime/ReportableSitesOfFunction.h
 new file mode 100644
-index 0000000000..891d4dda8e
+index 00000000000..891d4dda8e7
 --- /dev/null
 +++ b/Source/JavaScriptCore/runtime/ReportableSitesOfFunction.h
 @@ -0,0 +1,29 @@
@@ -10342,7 +10342,7 @@ index 0000000000..891d4dda8e
 +
 +} // namespace JSC
 diff --git a/Source/JavaScriptCore/runtime/SamplingProfiler.cpp b/Source/JavaScriptCore/runtime/SamplingProfiler.cpp
-index f419e8ca03..6b84c353ec 100644
+index f419e8ca03e..6b84c353ecb 100644
 --- a/Source/JavaScriptCore/runtime/SamplingProfiler.cpp
 +++ b/Source/JavaScriptCore/runtime/SamplingProfiler.cpp
 @@ -200,8 +200,13 @@ protected:
@@ -10372,7 +10372,7 @@ index f419e8ca03..6b84c353ec 100644
  
              size_t walkSize;
 diff --git a/Source/JavaScriptCore/runtime/StackFrame.cpp b/Source/JavaScriptCore/runtime/StackFrame.cpp
-index 57f3f696af..0c21044bc9 100644
+index 57f3f696af2..0c21044bc96 100644
 --- a/Source/JavaScriptCore/runtime/StackFrame.cpp
 +++ b/Source/JavaScriptCore/runtime/StackFrame.cpp
 @@ -90,7 +90,16 @@ CodeBlock* StackFrame::makeCodeBlock() const
@@ -10394,7 +10394,7 @@ index 57f3f696af..0c21044bc9 100644
      if (AOT::FunctionRef function = AOT::FunctionRef::of(vm, jsFrame.aotExecutable.get(), jsFrame.aotKind))
          return function.ensureCodeBlock();
 diff --git a/Source/JavaScriptCore/runtime/StringPrototype.cpp b/Source/JavaScriptCore/runtime/StringPrototype.cpp
-index f48a8a6a3b..86c7e65d54 100644
+index f48a8a6a3b8..86c7e65d54a 100644
 --- a/Source/JavaScriptCore/runtime/StringPrototype.cpp
 +++ b/Source/JavaScriptCore/runtime/StringPrototype.cpp
 @@ -763,6 +763,13 @@ JSC_DEFINE_HOST_FUNCTION(stringProtoFuncCharAt, (JSGlobalObject* globalObject, C
@@ -10426,7 +10426,7 @@ index f48a8a6a3b..86c7e65d54 100644
      RETURN_IF_EXCEPTION(scope, { });
      JSValue a0 = callFrame->argument(0);
 diff --git a/Source/JavaScriptCore/runtime/VM.cpp b/Source/JavaScriptCore/runtime/VM.cpp
-index e55096c301..dab6862830 100644
+index e55096c3017..dab68628306 100644
 --- a/Source/JavaScriptCore/runtime/VM.cpp
 +++ b/Source/JavaScriptCore/runtime/VM.cpp
 @@ -193,6 +193,10 @@
@@ -10502,7 +10502,7 @@ index e55096c301..dab6862830 100644
  
  void VM::updateStackLimits()
 diff --git a/Source/JavaScriptCore/runtime/WaiterListManager.cpp b/Source/JavaScriptCore/runtime/WaiterListManager.cpp
-index 3e7009b367..dbeb59150b 100644
+index 3e7009b3671..dbeb59150bd 100644
 --- a/Source/JavaScriptCore/runtime/WaiterListManager.cpp
 +++ b/Source/JavaScriptCore/runtime/WaiterListManager.cpp
 @@ -132,8 +132,29 @@ WaiterListManager::WaitSyncResult WaiterListManager::waitSyncImpl(VM& vm, ValueT
@@ -10537,7 +10537,7 @@ index 3e7009b367..dbeb59150b 100644
          syncWaiter->setParkedList(nullptr);
  
 diff --git a/Source/JavaScriptCore/shell/CMakeLists.txt b/Source/JavaScriptCore/shell/CMakeLists.txt
-index b1a05d5972..fe6073d65a 100644
+index b1a05d5972b..fe6073d65a0 100644
 --- a/Source/JavaScriptCore/shell/CMakeLists.txt
 +++ b/Source/JavaScriptCore/shell/CMakeLists.txt
 @@ -21,7 +21,10 @@ endif ()
@@ -10562,7 +10562,7 @@ index b1a05d5972..fe6073d65a 100644
  
 diff --git a/Source/JavaScriptCore/shell/ExternalMimallocShims.cpp b/Source/JavaScriptCore/shell/ExternalMimallocShims.cpp
 new file mode 100644
-index 0000000000..a4b74b4123
+index 00000000000..a4b74b4123b
 --- /dev/null
 +++ b/Source/JavaScriptCore/shell/ExternalMimallocShims.cpp
 @@ -0,0 +1,39 @@
@@ -10606,7 +10606,7 @@ index 0000000000..a4b74b4123
 +    mi_theap_collect(mi_theap_get_default(), /* force */ false);
 +}
 diff --git a/Source/JavaScriptCore/yarr/YarrJIT.cpp b/Source/JavaScriptCore/yarr/YarrJIT.cpp
-index 87c90d8818..70d5da8036 100644
+index 87c90d88185..70d5da8036f 100644
 --- a/Source/JavaScriptCore/yarr/YarrJIT.cpp
 +++ b/Source/JavaScriptCore/yarr/YarrJIT.cpp
 @@ -691,7 +691,9 @@ static void emitVerifySubjectRead(CCallHelpers& jit, AddressType address, unsign
@@ -10870,7 +10870,7 @@ index 87c90d8818..70d5da8036 100644
  #else
      UNUSED_PARAM(pattern);
 diff --git a/Source/JavaScriptCore/yarr/YarrJIT.h b/Source/JavaScriptCore/yarr/YarrJIT.h
-index f8dc0ace2d..33de4476e7 100644
+index f8dc0ace2d7..33de4476e78 100644
 --- a/Source/JavaScriptCore/yarr/YarrJIT.h
 +++ b/Source/JavaScriptCore/yarr/YarrJIT.h
 @@ -38,6 +38,7 @@
@@ -10939,7 +10939,7 @@ index f8dc0ace2d..33de4476e7 100644
  #if ENABLE(YARR_JIT_REGEXP_TEST_INLINE)
  
 diff --git a/Source/JavaScriptCore/yarr/YarrPattern.cpp b/Source/JavaScriptCore/yarr/YarrPattern.cpp
-index b44f0032e0..b5f3f3429b 100644
+index b44f0032e0a..b5f3f3429b3 100644
 --- a/Source/JavaScriptCore/yarr/YarrPattern.cpp
 +++ b/Source/JavaScriptCore/yarr/YarrPattern.cpp
 @@ -4578,6 +4578,120 @@ std::optional<WTF::BitSet<256>> computeFirstCharacterBitmap(StringView patternSt
@@ -11064,7 +11064,7 @@ index b44f0032e0..b5f3f3429b 100644
  
  WTF_ALLOW_UNSAFE_BUFFER_USAGE_END
 diff --git a/Source/JavaScriptCore/yarr/YarrPattern.h b/Source/JavaScriptCore/yarr/YarrPattern.h
-index 52edaf0a33..49c6775bdf 100644
+index 52edaf0a336..49c6775bdf3 100644
 --- a/Source/JavaScriptCore/yarr/YarrPattern.h
 +++ b/Source/JavaScriptCore/yarr/YarrPattern.h
 @@ -819,6 +819,9 @@ private:
@@ -11078,7 +11078,7 @@ index 52edaf0a33..49c6775bdf 100644
  
  using JSC::Yarr::MatchDirection;
 diff --git a/Source/WTF/wtf/AutomaticThread.cpp b/Source/WTF/wtf/AutomaticThread.cpp
-index 048180f219..27cc52d63b 100644
+index 048180f219b..27cc52d63b9 100644
 --- a/Source/WTF/wtf/AutomaticThread.cpp
 +++ b/Source/WTF/wtf/AutomaticThread.cpp
 @@ -27,6 +27,7 @@
@@ -11182,7 +11182,7 @@ index 048180f219..27cc52d63b 100644
                  if (result == WorkResult::Stop) {
                      Locker locker { *m_lock };
 diff --git a/Source/WTF/wtf/AutomaticThread.h b/Source/WTF/wtf/AutomaticThread.h
-index f665a24883..cda144334c 100644
+index f665a248837..cda144334cf 100644
 --- a/Source/WTF/wtf/AutomaticThread.h
 +++ b/Source/WTF/wtf/AutomaticThread.h
 @@ -203,6 +203,7 @@ protected:
@@ -11194,7 +11194,7 @@ index f665a24883..cda144334c 100644
      Condition m_waitCondition;
      Condition m_isRunningCondition;
 diff --git a/Source/WTF/wtf/BumpPointerAllocator.h b/Source/WTF/wtf/BumpPointerAllocator.h
-index e3cba80913..701b5ec332 100644
+index e3cba809137..701b5ec3321 100644
 --- a/Source/WTF/wtf/BumpPointerAllocator.h
 +++ b/Source/WTF/wtf/BumpPointerAllocator.h
 @@ -177,8 +177,12 @@ private:
@@ -11213,7 +11213,7 @@ index e3cba80913..701b5ec332 100644
                      return nullptr;
                  previousPool->m_next = pool;
 diff --git a/Source/WTF/wtf/CMakeLists.txt b/Source/WTF/wtf/CMakeLists.txt
-index 83a0833da0..ee470e7833 100644
+index 83a0833da0f..ee470e78338 100644
 --- a/Source/WTF/wtf/CMakeLists.txt
 +++ b/Source/WTF/wtf/CMakeLists.txt
 @@ -359,6 +359,7 @@ set(WTF_PUBLIC_HEADERS
@@ -11225,7 +11225,7 @@ index 83a0833da0..ee470e7833 100644
      SystemMalloc.h
      SystemTracing.h
 diff --git a/Source/WTF/wtf/FastMalloc.cpp b/Source/WTF/wtf/FastMalloc.cpp
-index bb0e777124..3c0fe4bef0 100644
+index bb0e7771246..3c0fe4bef08 100644
 --- a/Source/WTF/wtf/FastMalloc.cpp
 +++ b/Source/WTF/wtf/FastMalloc.cpp
 @@ -605,6 +605,11 @@ void releaseFastMallocFreeMemoryForThisThread()
@@ -11241,7 +11241,7 @@ index bb0e777124..3c0fe4bef0 100644
  {
      bmalloc::api::scavenge();
 diff --git a/Source/WTF/wtf/FastMalloc.h b/Source/WTF/wtf/FastMalloc.h
-index 2e673c9f8c..8852635dc8 100644
+index 2e673c9f8c4..8852635dc8b 100644
 --- a/Source/WTF/wtf/FastMalloc.h
 +++ b/Source/WTF/wtf/FastMalloc.h
 @@ -177,6 +177,8 @@ WTF_EXPORT_PRIVATE size_t fastMallocGoodSize(size_t);
@@ -11254,7 +11254,7 @@ index 2e673c9f8c..8852635dc8 100644
  WTF_EXPORT_PRIVATE void fastCommitAlignedMemory(void*, size_t);
  WTF_EXPORT_PRIVATE void fastDecommitAlignedMemory(void*, size_t);
 diff --git a/Source/WTF/wtf/FunctionPtr.h b/Source/WTF/wtf/FunctionPtr.h
-index 198bc88761..12b9c8f44e 100644
+index 198bc887617..12b9c8f44e2 100644
 --- a/Source/WTF/wtf/FunctionPtr.h
 +++ b/Source/WTF/wtf/FunctionPtr.h
 @@ -31,6 +31,7 @@
@@ -11279,7 +11279,7 @@ index 198bc88761..12b9c8f44e 100644
      }
  
 diff --git a/Source/WTF/wtf/HashFunctions.h b/Source/WTF/wtf/HashFunctions.h
-index 8c633ff782..2574afbb0c 100644
+index 8c633ff7823..2574afbb0c5 100644
 --- a/Source/WTF/wtf/HashFunctions.h
 +++ b/Source/WTF/wtf/HashFunctions.h
 @@ -26,8 +26,25 @@
@@ -11327,7 +11327,7 @@ index 8c633ff782..2574afbb0c 100644
          static constexpr bool safeToCompareToEmptyOrDeleted = true;
  
 diff --git a/Source/WTF/wtf/Hasher.h b/Source/WTF/wtf/Hasher.h
-index a4fccc37f9..4fc0909675 100644
+index a4fccc37f9d..4fc0909675f 100644
 --- a/Source/WTF/wtf/Hasher.h
 +++ b/Source/WTF/wtf/Hasher.h
 @@ -129,7 +129,7 @@ inline void add(Hasher& hasher, float number)
@@ -11349,7 +11349,7 @@ index a4fccc37f9..4fc0909675 100644
  
  inline void add(Hasher& hasher, ASCIILiteral literal)
 diff --git a/Source/WTF/wtf/RandomDevice.cpp b/Source/WTF/wtf/RandomDevice.cpp
-index 342682dbcb..55ca3c188d 100644
+index 342682dbcb7..55ca3c188d6 100644
 --- a/Source/WTF/wtf/RandomDevice.cpp
 +++ b/Source/WTF/wtf/RandomDevice.cpp
 @@ -35,6 +35,13 @@
@@ -11423,7 +11423,7 @@ index 342682dbcb..55ca3c188d 100644
          WTF_ALLOW_UNSAFE_BUFFER_USAGE_BEGIN
          ssize_t currentRead = read(m_fd, buffer.data() + amountRead, buffer.size() - amountRead);
 diff --git a/Source/WTF/wtf/RandomDevice.h b/Source/WTF/wtf/RandomDevice.h
-index ce4af34736..4d5e2d0f7b 100644
+index ce4af347368..4d5e2d0f7bf 100644
 --- a/Source/WTF/wtf/RandomDevice.h
 +++ b/Source/WTF/wtf/RandomDevice.h
 @@ -51,7 +51,9 @@ public:
@@ -11439,7 +11439,7 @@ index ce4af34736..4d5e2d0f7b 100644
  // WARNING: When adding new sources of OS randomness, the randomness must
 diff --git a/Source/WTF/wtf/SysVCall.h b/Source/WTF/wtf/SysVCall.h
 new file mode 100644
-index 0000000000..1c31756902
+index 00000000000..1c31756902b
 --- /dev/null
 +++ b/Source/WTF/wtf/SysVCall.h
 @@ -0,0 +1,49 @@
@@ -11493,7 +11493,7 @@ index 0000000000..1c31756902
 +
 +using WTF::callSysV;
 diff --git a/Source/WTF/wtf/text/AtomStringTable.h b/Source/WTF/wtf/text/AtomStringTable.h
-index 9f18146bf2..8f6bbed8d6 100644
+index 9f18146bf21..8f6bbed8d6c 100644
 --- a/Source/WTF/wtf/text/AtomStringTable.h
 +++ b/Source/WTF/wtf/text/AtomStringTable.h
 @@ -48,23 +48,41 @@ public:
@@ -11542,7 +11542,7 @@ index 9f18146bf2..8f6bbed8d6 100644
                      return string;
              }
 diff --git a/Source/bmalloc/CMakeLists.txt b/Source/bmalloc/CMakeLists.txt
-index 0c3e67772a..b4a4c8dfd1 100644
+index 0c3e67772a0..b4a4c8dfd12 100644
 --- a/Source/bmalloc/CMakeLists.txt
 +++ b/Source/bmalloc/CMakeLists.txt
 @@ -698,6 +698,10 @@ if (USE_MIMALLOC)
@@ -11557,7 +11557,7 @@ index 0c3e67772a..b4a4c8dfd1 100644
      add_definitions(-DUSE_SYSTEM_MALLOC=1)
  endif ()
 diff --git a/Source/bmalloc/bmalloc/BPlatform.h b/Source/bmalloc/bmalloc/BPlatform.h
-index b59de41278..99a96d5e59 100644
+index b59de412789..99a96d5e59e 100644
 --- a/Source/bmalloc/bmalloc/BPlatform.h
 +++ b/Source/bmalloc/bmalloc/BPlatform.h
 @@ -387,6 +387,13 @@
@@ -11575,7 +11575,7 @@ index b59de41278..99a96d5e59 100644
  #define BUSE_SYSTEM_MALLOC 1
  #elif BTSAN_ENABLED
 diff --git a/Source/bmalloc/bmalloc/CryptoRandom.cpp b/Source/bmalloc/bmalloc/CryptoRandom.cpp
-index 4724cad68f..8590e9b999 100644
+index 4724cad68f1..8590e9b9997 100644
 --- a/Source/bmalloc/bmalloc/CryptoRandom.cpp
 +++ b/Source/bmalloc/bmalloc/CryptoRandom.cpp
 @@ -43,6 +43,13 @@
@@ -11653,7 +11653,7 @@ index 4724cad68f..8590e9b999 100644
  #endif
  
 diff --git a/Source/bmalloc/bmalloc/StaticRegion.cpp b/Source/bmalloc/bmalloc/StaticRegion.cpp
-index 77260b2296..bbe9ce4ee0 100644
+index 77260b2296a..bbe9ce4ee05 100644
 --- a/Source/bmalloc/bmalloc/StaticRegion.cpp
 +++ b/Source/bmalloc/bmalloc/StaticRegion.cpp
 @@ -7,37 +7,365 @@
@@ -12204,7 +12204,7 @@ index 77260b2296..bbe9ce4ee0 100644
                  return pointer;
              }
 diff --git a/Source/bmalloc/bmalloc/StaticRegion.h b/Source/bmalloc/bmalloc/StaticRegion.h
-index c87b01ecf0..60f226a4c9 100644
+index c87b01ecf08..60f226a4c9c 100644
 --- a/Source/bmalloc/bmalloc/StaticRegion.h
 +++ b/Source/bmalloc/bmalloc/StaticRegion.h
 @@ -7,12 +7,45 @@
@@ -12349,7 +12349,7 @@ index c87b01ecf0..60f226a4c9 100644
      BEXPORT static void clearFreeLists(); // When all is built.
      BEXPORT static size_t bytesThatAreFree(); // Before that: what was freed and is in the file all the same.
 diff --git a/Source/bmalloc/bmalloc/bmalloc.cpp b/Source/bmalloc/bmalloc/bmalloc.cpp
-index ff0b7de48c..ef1e6220d9 100644
+index ff0b7de48cb..ef1e6220d95 100644
 --- a/Source/bmalloc/bmalloc/bmalloc.cpp
 +++ b/Source/bmalloc/bmalloc/bmalloc.cpp
 @@ -127,6 +127,23 @@ void scavengeThisThread(bool force)
@@ -12377,7 +12377,7 @@ index ff0b7de48c..ef1e6220d9 100644
  {
  #if BENABLE(LIBPAS)
 diff --git a/Source/bmalloc/bmalloc/bmalloc.h b/Source/bmalloc/bmalloc/bmalloc.h
-index 953727f888..da8584ebb6 100644
+index 953727f8883..da8584ebb6a 100644
 --- a/Source/bmalloc/bmalloc/bmalloc.h
 +++ b/Source/bmalloc/bmalloc/bmalloc.h
 @@ -332,6 +332,11 @@ BEXPORT void freeLargeVirtual(void* object, size_t, HeapKind kind = HeapKind::Pr
@@ -12393,7 +12393,7 @@ index 953727f888..da8584ebb6 100644
  
  BEXPORT bool isEnabled(HeapKind kind = HeapKind::Primary);
 diff --git a/Source/cmake/WebKitCompilerFlags.cmake b/Source/cmake/WebKitCompilerFlags.cmake
-index 04629219b7..1bae3cb0f4 100644
+index 04629219b7f..1bae3cb0f46 100644
 --- a/Source/cmake/WebKitCompilerFlags.cmake
 +++ b/Source/cmake/WebKitCompilerFlags.cmake
 @@ -172,7 +172,9 @@ if (DEVELOPER_MODE AND DEVELOPER_MODE_FATAL_WARNINGS)
@@ -12408,7 +12408,7 @@ index 04629219b7..1bae3cb0f4 100644
      WEBKIT_PREPEND_GLOBAL_COMPILER_FLAGS(-fno-omit-frame-pointer)
  endif ()
 diff --git a/Source/cmake/WebKitMacros.cmake b/Source/cmake/WebKitMacros.cmake
-index dfb74c367d..1d1bbc51a5 100644
+index dfb74c367d1..1d1bbc51a5f 100644
 --- a/Source/cmake/WebKitMacros.cmake
 +++ b/Source/cmake/WebKitMacros.cmake
 @@ -973,11 +973,29 @@ function(WEBKIT_SYMLINK_FILES target_name)
@@ -12447,7 +12447,7 @@ index dfb74c367d..1d1bbc51a5 100644
      endforeach ()
      add_custom_target(${target_name} ALL DEPENDS ${dst_files})
 diff --git a/build-icu.ps1 b/build-icu.ps1
-index de16575461..dd18e3f63b 100644
+index de16575461f..dd18e3f63ba 100644
 --- a/build-icu.ps1
 +++ b/build-icu.ps1
 @@ -78,7 +78,7 @@ $ICU_SOURCE_STAMP = Join-Path $OutputDir "source-version.txt"
@@ -12549,5 +12549,403 @@ index de16575461..dd18e3f63b 100644
      Write-Host ":: WARNING: ICU data library not found. Listing generated files..."
      Get-ChildItem -Path $OutputDir -Recurse -Filter "*.lib" | ForEach-Object {
 -- 
-2.54.0 (Apple Git-157)
+2.43.0
+
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pi-Bolt <pibolt@local>
+Date: Sun, 11 Oct 2026 11:26:55 +0200
+Subject: [PATCH] AOT: the x86-64 GetByVal stub looks a property name up in the
+ megamorphic cache
+
+The stub handled an element, a string's character and a typed array's, and sent
+every property name to operationAOTGetByVal(), which is a call into C++ per
+access. ARM64's stub asks the VM's megamorphic cache first, and this file's own
+generatePutByVal() already does the same for a store, so the get side was the
+only one missing.
+
+Measured with tests/aot/microbench (AOT min CPU, 5 runs): a string-keyed read
+site drops from 2.059s to 1.007s (-51%) on prop-index; the benchmarks that use
+GetById instead are unchanged within run-to-run variance.
+---
+ Source/JavaScriptCore/aot/AOTStubsX86_64.cpp | 27 ++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+diff --git a/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
+index bdd92d37d3a..a031002212b 100644
+--- a/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
++++ b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
+@@ -2136,7 +2136,8 @@ static void generateGetByValAtIndex(CCallHelpers& jit)
+     goOnIntoNextStub(jit);
+ }
+ 
+-// A0 = base, A1 = property. Result in A0. TODO(x86-aot-port): a property name in the megamorphic cache, as on ARM64.
++// A0 = base, A1 = property. Result in A0. An element, a string's character, a typed array's, or, for a property name, the VM's
++// megamorphic cache.
+ static void generateGetByVal(CCallHelpers& jit)
+ {
+     constexpr FPRReg number = FPRInfo::fpRegT0;
+@@ -2261,13 +2262,35 @@ static void generateGetByVal(CCallHelpers& jit)
+ 
+     // A double with an integral value names the same property as the integer. So does -0.
+     notInt32.link(&jit);
+-    slow.append(jit.branchTest64(CCallHelpers::Zero, A1, T9));
++    Jump notNumber = jit.branchTest64(CCallHelpers::Zero, A1, T9);
+     jit.add64(T9, A1, storage);
+     jit.move64ToDouble(storage, number);
+     jit.branchConvertDoubleToInt32(number, storage, slow, FPRInfo::fpRegT1, false);
+     jit.or64(T9, storage, A1);
+     jit.jump().linkTo(haveIndex, &jit);
+ 
++    // A property name (an atom string or a symbol) of a property the object has: the VM's megamorphic cache says where it is
++    // (filled in by getByIdAndFillMegamorphicCache(), which the operation calls). As ARM64's, and as this file's
++    // generatePutByVal() does for a store. uid is A2: the index path's A2, A3 and A4 are done with by here, and the helper
++    // takes a uid in A2.
++    notNumber.link(&jit);
++    {
++        constexpr GPRReg uid = A2;
++        slow.append(jit.branchIfNotCell(A0));
++        slow.append(jit.branchIfNotObject(A0));
++        slow.append(jit.branchIfNotCell(A1));
++        Jump isSymbol = jit.branchIfSymbol(A1);
++        slow.append(jit.branchIfNotString(A1));
++        jit.loadPtr(Address(A1, JSString::offsetOfValue()), uid);
++        slow.append(jit.branchIfRopeStringImpl(uid));
++        slow.append(jit.branchTest32(CCallHelpers::Zero, Address(uid, StringImpl::flagsOffset()), TrustedImm32(StringImpl::flagIsAtom())));
++        Jump haveName = jit.jump();
++        isSymbol.link(&jit);
++        jit.loadPtr(Address(A1, Symbol::offsetOfSymbolImpl()), uid);
++        haveName.link(&jit);
++        getFromMegamorphicCache(jit, uid, slow);
++    }
++
+     slow.link(&jit);
+     callBinaryOperation(jit, Entry::operationAOTGetByVal);
+ }
+-- 
+2.43.0
+
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: carsten <ce@papoo.de>
+Date: Sun, 11 Oct 2026 14:11:30 +0200
+Subject: [PATCH] AOT: the x86-64 GetById stub fills an empty site slot from
+ the program's dispatch table
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+A site's slot is empty the first time the site runs, and after its Data has been
+replaced. ARM64's stub asks the program's dispatch table — by the object's known
+shape and the site's selector — for the property's location, fills the slot so
+the next access at the site is the monomorphic one, and answers a property the
+object has of its own without entering C++; a name Object.prototype has, and a
+slot that is of no use to the site, are the only cases left for the operation.
+The x86-64 stub sent all of them to operationAOTGetById(), a call into C++ that
+does a full property lookup, a prototype walk and the caching machinery.
+
+The block is ARM64's, translated: A2-A4 and rax take its T11-T13 and T15
+(rax is thisGPR, which a property read has nothing to do with, and doubles as
+the caller-function index); the Data stays in T9, which prepareMissAtSite()
+overwrites anyway; and the Instance is read from instanceGPR (r13), where it
+always is and which no stub writes, instead of being copied into a spare
+register as ARM64's helpers do — nine caller-saved registers leave none to
+spare. The five helpers it needs (loadIndexOfCaller, loadDataOfSlot,
+countMissOfSlot, findInDispatchTable, fillEmptySlotFromDispatchTable) are
+ARM64's with an explicit index register in place of ARM64's fixed T15.
+
+Measured with tests/aot/microbench on a fixture of 64000 sites each reached once
+(prop-cold1000), AOT min CPU over three interleaved alternations of the two
+binaries: 11ms before, 9-10ms after, so about 20-30ns a cold site, which is one
+avoided C++ call and its lookup. The benchmarks whose sites are hot (prop-mono,
+prop-poly, prop-index) are unchanged within the run-to-run spread, as expected:
+the block runs only on a miss.
+
+Differential: 58 PASS / 0 FAIL over jit-on, jit-off and compact; the crash
+oracle (hs/bisect.sh) OK(0) on all four programs.
+---
+ Source/JavaScriptCore/aot/AOTStubsX86_64.cpp | 261 +++++++++++++++++++
+ 1 file changed, 261 insertions(+)
+
+diff --git a/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
+index a031002212b..36742fc8833 100644
+--- a/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
++++ b/Source/JavaScriptCore/aot/AOTStubsX86_64.cpp
+@@ -1368,6 +1368,189 @@ static void getFromMegamorphicCache(CCallHelpers& jit, GPRReg uid, CCallHelpers:
+     callGetter(jit, result, notFound);
+ }
+ 
++// The index of the function whose code the stub is to return to. The stub has pushed nothing, so its return address is on top of the
++// stack (ARM64 has it in the link register). Clobbers `pc` and `offset`.
++static void loadIndexOfCaller(CCallHelpers& jit, GPRReg index, GPRReg pc, GPRReg offset)
++{
++    jit.loadPtr(Address(CCallHelpers::stackPointerRegister), pc);
++    loadIndexOfFunctionAt(jit, pc, index, offset);
++}
++
++// As loadInstanceAndDataOfSlot(), for a caller that has a use for the register it loads the Instance into: the Instance is where it
++// always is (instanceGPR), so it is read from there instead of being copied. Leaves in `data` the Data that contains the slot: the
++// function's own or, if it had none when it was called, SharedData. Clobbers the scratch register.
++static void loadDataOfSlot(CCallHelpers& jit, GPRReg slot, GPRReg data, GPRReg index)
++{
++    ASSERT(noOverlap(slot, data, index, scratchGPR));
++    static_assert(SharedData::size < std::numeric_limits<int32_t>::max());
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfSharedData()), data);
++    jit.move(slot, scratchGPR);
++    jit.subPtr(data, scratchGPR);
++    Jump isShared = jit.branch64(CCallHelpers::Below, scratchGPR, TrustedImm32(SharedData::size));
++    jit.move(index, data);
++    jit.lshiftPtr(TrustedImm32(2), data);
++    jit.addPtr(instanceGPR, data);
++    jit.load32(Address(data, Instance::offsetOfStates()), data);
++    jit.lshiftPtr(TrustedImm32(Instance::shiftOfStateWithData), data);
++    jit.addPtr(instanceGPR, data);
++    isShared.link(&jit);
++}
++
++// Call after the above, on a miss. If the slot is in SharedData, counts the miss: once a function has taken enough of them it is
++// given its own Data, which takes effect the next time it is called. This is for misses that may still be resolved without calling
++// an operation; operations count their own misses. A0 and A1 — the operands of the miss the stub may yet make — and `data` and
++// `index` are preserved; b1, b2, b3 and the scratch register are used.
++static void countMissOfSlot(CCallHelpers& jit, GPRReg data, GPRReg index, GPRReg b1, GPRReg b2, GPRReg b3)
++{
++    ASSERT(noOverlap(data, index, b1, b2, b3, A0, A1, scratchGPR));
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfSharedData()), b1);
++    Jump isItsOwn = jit.branchPtr(CCallHelpers::NotEqual, data, b1);
++    jit.move(index, b1);
++    jit.move(instanceGPR, b2);
++    jit.addPtr(TrustedImm32(Instance::offsetOfStates()), b2);
++    jit.load32(CCallHelpers::BaseIndex(b2, b1, CCallHelpers::TimesFour), b3);
++    // The function was given its own Data after this call began and keeps using SharedData until it returns: the state word is no
++    // longer a count.
++    Jump hasItsOwnByNow = jit.branch32(CCallHelpers::AboveOrEqual, b3, TrustedImm32(Instance::leastStateWithData));
++    jit.add32(TrustedImm32(1), b3);
++    // The count is in the low 16 bits.
++    jit.store16(b3, CCallHelpers::BaseIndex(b2, b1, CCallHelpers::TimesFour));
++    jit.zeroExtend16To32(b3, b3);
++    static_assert(sizeof(FunctionInfo) == 32);
++    jit.move(b1, b2);
++    jit.lshiftPtr(TrustedImm32(5), b2);
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfInfos()), scratchGPR);
++    jit.addPtr(scratchGPR, b2);
++    // Inline version of Instance::missesToPutUpWithFor(). The saturated case cannot occur, because a function with that many slots
++    // does not start cold.
++    jit.load16(Address(b2, FunctionInfo::offsetOfFlags()), b2);
++    jit.urshift32(TrustedImm32(FunctionInfo::numberOfFlagBits), b2);
++    jit.load32(Address(instanceGPR, Instance::offsetOfMissesForEightSlots()), scratchGPR);
++    jit.mul32(scratchGPR, b2, b2);
++    jit.urshift32(TrustedImm32(3), b2);
++    jit.load32(Address(instanceGPR, Instance::offsetOfMissesToSpare()), scratchGPR);
++    jit.add32(scratchGPR, b2);
++    // Only when the count first reaches the limit. Calls already in progress keep counting.
++    Jump notYet = jit.branch32(CCallHelpers::NotEqual, b3, b2);
++    {
++        // What the miss may still need is in the argument registers, and a call would overwrite them, so they are saved around it.
++        // The stub's own frame leaves the stack aligned for the call (a call is entered with rsp = 8 mod 16).
++        constexpr GPRReg arguments[] = { A0, A1, A2, A3, A4, A5 };
++        jit.emitFunctionPrologue();
++        jit.subPtr(TrustedImm32(64), CCallHelpers::stackPointerRegister);
++        for (unsigned i = 0; i < 6; ++i)
++            jit.storePtr(arguments[i], Address(CCallHelpers::stackPointerRegister, i * 8));
++        jit.storePtr(data, Address(CCallHelpers::stackPointerRegister, 48));
++        jit.storePtr(index, Address(CCallHelpers::stackPointerRegister, 56));
++        jit.move(instanceGPR, A0);
++        jit.move(index, A1);
++        jit.loadPtr(Address(instanceGPR, Instance::offsetOfRuntimeTable()), scratchGPR);
++        jit.loadPtr(Address(scratchGPR, static_cast<unsigned>(Entry::operationAOTGiveData) * sizeof(void*)), scratchGPR);
++        jit.call(scratchGPR, OperationPtrTag);
++        for (unsigned i = 0; i < 6; ++i)
++            jit.loadPtr(Address(CCallHelpers::stackPointerRegister, i * 8), arguments[i]);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 48), data);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 56), index);
++        jit.addPtr(TrustedImm32(64), CCallHelpers::stackPointerRegister);
++        jit.emitFunctionEpilogue();
++    }
++    notYet.link(&jit);
++    hasItsOwnByNow.link(&jit);
++    isItsOwn.link(&jit);
++}
++
++// A0 = a cell. slot: the slot of a property access. If the cell has a known shape (Structure::knownShape()), looks up the shape and
++// the site's selector in the program's dispatch table and leaves the property's location in b2: in words from the start of the
++// object or, if negative, from its butterfly. `data` is the Data that contains the slot and `index` the function's index; both are
++// preserved, as are A0, A1 and `slot`. Leaves the selector in `selector`; clobbers b1, b2 and b3 and the scratch register. Takes the
++// jump for a cell of no known shape, and the jump for a cell whose shape knows the name but does not have it.
++static void findInDispatchTable(CCallHelpers& jit, GPRReg slot, GPRReg selector, GPRReg b1, GPRReg b2, GPRReg b3, GPRReg data, GPRReg index, CCallHelpers::JumpList& notOfKnownShape, CCallHelpers::JumpList& notOwn)
++{
++    ASSERT(noOverlap(slot, selector, b1, b2, b3, data, index, A0, scratchGPR));
++    jit.load32(Address(A0, JSCell::structureIDOffset()), b1);
++    orStructureIDBase(jit, b1);
++    jit.load16(Address(b1, Structure::offsetOfKnownShape()), b1);
++    notOfKnownShape.append(jit.branchTest32(CCallHelpers::Zero, b1));
++    loadInfo(jit, instanceGPR, index, b2);
++    jit.load16(Address(b2, FunctionInfo::offsetOfFlags()), selector);
++    siteOfSlot(jit, data, slot, b3);
++    static_assert(sizeof(Site) == 4);
++    // (Where the sites of the function were given their constants, the site's word is the selector itself; otherwise it is an index
++    // into the table of selector words, which the same flags say the size of.)
++    Jump isWhatTheSiteReads = jit.branchTest32(CCallHelpers::NonZero, selector, TrustedImm32(FunctionInfo::sitesHaveTheirConstants));
++    notOfKnownShape.append(jit.branchTest32(CCallHelpers::Zero, selector, TrustedImm32(FunctionInfo::hasSiteConstants)));
++    jit.loadPtr(Address(b2, FunctionInfo::offsetOfSites()), b2);
++    jit.load32(Address(b2, static_cast<ptrdiff_t>(OBJECT_OFFSETOF(ImageFunction, numSlots)) - static_cast<ptrdiff_t>(sizeof(ImageFunction))), selector);
++    jit.getEffectiveAddress(CCallHelpers::BaseIndex(b2, selector, CCallHelpers::TimesFour), b2);
++    jit.load32(CCallHelpers::BaseIndex(b2, b3, CCallHelpers::TimesFour), selector);
++    Jump haveSelector = jit.jump();
++    isWhatTheSiteReads.link(&jit);
++    jit.loadPtr(Address(b2, FunctionInfo::offsetOfSites()), b2);
++    jit.load32(CCallHelpers::BaseIndex(b2, b3, CCallHelpers::TimesFour), selector);
++    jit.and32(TrustedImm32((1u << Site::identifierBits) - 1), selector);
++    haveSelector.link(&jit);
++    notOfKnownShape.append(jit.branchTest32(CCallHelpers::Zero, selector));
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfRowsOfSelectors()), b2);
++    jit.load32(CCallHelpers::BaseIndex(b2, selector, CCallHelpers::TimesFour), b2);
++    jit.add32(b1, b2);
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfDispatch()), b3);
++    jit.load32(CCallHelpers::BaseIndex(b3, b2, CCallHelpers::TimesFour), b2);
++    jit.move(b2, b3);
++    jit.urshift32(TrustedImm32(ImageDispatchEntry::locationBits), b3);
++    notOwn.append(jit.branch32(CCallHelpers::NotEqual, b3, selector));
++    jit.lshift64(TrustedImm32(64 - ImageDispatchEntry::locationBits), b2);
++    jit.rshift64(TrustedImm32(64 - ImageDispatchEntry::locationBits), b2);
++}
++
++// Call after the above, for a property the object has of its own and in its own storage. If the site's slot is empty, fills it in,
++// because the fast paths read the slot without calling a stub: so the next access at the site is the monomorphic one. `location` is
++// what findInDispatchTable() left. A0, A1, the Data, the location and the index are preserved; `word` and `scratch` are used.
++static void fillEmptySlotFromDispatchTable(CCallHelpers& jit, GPRReg slot, GPRReg data, GPRReg location, GPRReg word, GPRReg scratch)
++{
++    ASSERT(noOverlap(word, scratch, slot, data, location, A0, A1, scratchGPR));
++    jit.loadPtr(Address(instanceGPR, Instance::offsetOfSharedData()), scratch);
++    Jump slotIsNobodys = jit.branchPtr(CCallHelpers::Equal, data, scratch);
++    jit.load64(slotWord(slot, 0), word);
++    Jump slotIsTaken = jit.branchTest32(CCallHelpers::NonZero, word);
++    Jump slotHasMore = jit.branchTestPtr(CCallHelpers::NonZero, slotWord(slot, 1));
++    // Tell the GC that this function's slots have been filled.
++    Jump collectorKnows = jit.branchTest8(CCallHelpers::NonZero, Address(data, Data::offsetOfHasBeenFilledSinceLastCollection()));
++    {
++        jit.emitFunctionPrologue();
++        jit.subPtr(TrustedImm32(64), CCallHelpers::stackPointerRegister);
++        jit.storePtr(A0, Address(CCallHelpers::stackPointerRegister, 0));
++        jit.storePtr(A1, Address(CCallHelpers::stackPointerRegister, 8));
++        jit.storePtr(data, Address(CCallHelpers::stackPointerRegister, 16));
++        jit.storePtr(location, Address(CCallHelpers::stackPointerRegister, 24));
++        jit.storePtr(word, Address(CCallHelpers::stackPointerRegister, 32));
++        jit.move(data, A0);
++        jit.loadPtr(Address(instanceGPR, Instance::offsetOfRuntimeTable()), scratch);
++        jit.loadPtr(Address(scratch, static_cast<unsigned>(Entry::operationAOTNoteFilled) * sizeof(void*)), scratch);
++        jit.call(scratch, OperationPtrTag);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 0), A0);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 8), A1);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 16), data);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 24), location);
++        jit.loadPtr(Address(CCallHelpers::stackPointerRegister, 32), word);
++        jit.addPtr(TrustedImm32(64), CCallHelpers::stackPointerRegister);
++        jit.emitFunctionEpilogue();
++    }
++    collectorKnows.link(&jit);
++    jit.and64(CCallHelpers::TrustedImm64(static_cast<int64_t>(static_cast<uint64_t>(Slot::attemptsMask) << 32)), word);
++    jit.move(location, scratch);
++    jit.lshiftPtr(TrustedImm32(32), scratch);
++    jit.or64(scratch, word);
++    jit.load32(Address(A0, JSCell::structureIDOffset()), scratch);
++    jit.or64(scratch, word);
++    jit.store64(word, slotWord(slot, 0));
++    jit.load64(Address(data, Data::offsetOfSlotEpoch()), word);
++    jit.add64(TrustedImm32(1), word);
++    jit.store64(word, Address(data, Data::offsetOfSlotEpoch()));
++    slotIsNobodys.link(&jit);
++    slotIsTaken.link(&jit);
++    slotHasMore.link(&jit);
++}
++
+ // A0 = base, A1 = site. Result in A0. Light (stubPreservesCalleeSaves()): ARM64's T11 and T12 are T9 and rax here (rax is thisGPR,
+ // which a property read has nothing to do with).
+ static void generateGetByIdWith(CCallHelpers& jit, Entry operation)
+@@ -1490,6 +1673,84 @@ static void generateGetByIdWith(CCallHelpers& jit, Entry operation)
+         miss.append(jit.jump());
+ 
+     miss.link(&jit);
++    if (operation == Entry::operationAOTGetById) {
++        // An empty slot — a site's first access, or one whose Data has been replaced — and the slots that cannot be filled. ARM64's
++        // block follows; here A2-A4 and rax are its T11-T13 and T15, the Data is kept in T9 (which prepareMissAtSite() writes
++        // anyway), and the Instance is read where it always is, since there is no register to spare for a copy of it.
++        constexpr GPRReg index = X86Registers::eax; // thisGPR, which a property read has nothing to do with.
++        constexpr GPRReg data = T9;
++        constexpr GPRReg selector = A5;
++        constexpr GPRReg b1 = A2;
++        constexpr GPRReg b2 = A3;
++        constexpr GPRReg b3 = A4;
++        CCallHelpers::JumpList notInTable;
++        CCallHelpers::JumpList notOwn;
++        loadIndexOfCaller(jit, index, b1, b2);
++        // An object with a known shape: the program's dispatch table gives the locations of its properties.
++        loadDataOfSlot(jit, A1, data, index);
++        countMissOfSlot(jit, data, index, b1, b2, b3);
++        notInTable.append(jit.branchIfNotCell(A0));
++        findInDispatchTable(jit, A1, selector, b1, b2, b3, data, index, notInTable, notOwn);
++        // The location is in b2: in words from the start of the object, or negative for one in its butterfly.
++        Jump isOutOfLine = jit.branch64(CCallHelpers::LessThan, b2, TrustedImm32(0));
++        fillEmptySlotFromDispatchTable(jit, A1, data, b2, b1, b3);
++        jit.load64(CCallHelpers::BaseIndex(A0, b2, CCallHelpers::TimesEight), A0);
++        jit.ret();
++
++        isOutOfLine.link(&jit);
++        jit.loadPtr(Address(A0, JSObject::butterflyOffset()), b3);
++        jit.load64(CCallHelpers::BaseIndex(b3, b2, CCallHelpers::TimesEight), A0);
++        jit.ret();
++
++        // No own property with that name. See Instance::lookAtObjectPrototype(): the name's bit in the set of the ones
++        // Object.prototype has says whether it does, and if it does not the answer is undefined, worked out here.
++        notOwn.link(&jit);
++        jit.load32(Address(A0, JSCell::structureIDOffset()), b2);
++        orStructureIDBase(jit, b2);
++        jit.loadPtr(Address(b2, Structure::prototypeOffset()), b2);
++        jit.loadPtr(Address(instanceGPR, Instance::offsetOfObjectPrototype()), b3);
++        notInTable.append(jit.branchPtr(CCallHelpers::NotEqual, b2, b3));
++        jit.load32(Address(b3, JSCell::structureIDOffset()), b2);
++        notInTable.append(jit.branch32(CCallHelpers::NotEqual, b2, Address(instanceGPR, Instance::offsetOfStructureIDOfObjectPrototype())));
++        jit.loadPtr(Address(instanceGPR, Instance::offsetOfSelectorsOnObjectPrototype()), b1);
++        jit.move(selector, b2);
++        jit.urshift32(TrustedImm32(3), b2);
++        jit.load8(CCallHelpers::BaseIndex(b1, b2, CCallHelpers::TimesOne), b3);
++        jit.move(selector, b2);
++        jit.and32(TrustedImm32(7), b2);
++        jit.urshift32(b2, b3);
++        notInTable.append(jit.branchTest32(CCallHelpers::NonZero, b3, TrustedImm32(1)));
++        jit.move(CCallHelpers::TrustedImm64(JSValue::ValueUndefined), A0);
++        jit.ret();
++        notInTable.link(&jit);
++
++        // A slot that is of no use to the site's own cache anymore: one that was given up on, or one whose Data is not this
++        // function's. See branchIfSlotIsStillOfUse() (AOTThunks.cpp). The megamorphic cache is what is left.
++        CCallHelpers::JumpList notFound;
++        notFound.append(jit.branchIfNotCell(A0));
++        notFound.append(jit.branchIfNotObject(A0));
++        jit.load32(Address(A1, OBJECT_OFFSETOF(Slot, offset)), b1);
++        jit.and32(TrustedImm32(Slot::attemptsMask), b1);
++        Jump hasGivenUp = jit.branch32(CCallHelpers::Equal, b1, TrustedImm32(Slot::attemptsMask));
++        loadDataOfSlot(jit, A1, data, index);
++        Jump isTaken = jit.branchTest32(CCallHelpers::NonZero, Address(A1, OBJECT_OFFSETOF(Slot, structureID)));
++        jit.loadPtr(Address(instanceGPR, Instance::offsetOfSharedData()), b1);
++        notFound.append(jit.branchPtr(CCallHelpers::NotEqual, data, b1));
++        Jump isNobodys = jit.jump();
++        hasGivenUp.link(&jit);
++        loadDataOfSlot(jit, A1, data, index);
++        isTaken.link(&jit);
++        isNobodys.link(&jit);
++        siteOfSlot(jit, data, A1, b3);
++        loadInfo(jit, instanceGPR, index, data);
++        jit.loadPtr(Address(data, FunctionInfo::offsetOfSites()), b1);
++        jit.load32(CCallHelpers::BaseIndex(b1, b3, CCallHelpers::TimesFour), b2);
++        jit.and32(TrustedImm32((1u << Site::identifierBits) - 1), b2);
++        jit.loadPtr(Address(data, FunctionInfo::offsetOfIdentifiers()), b1);
++        jit.loadPtr(CCallHelpers::BaseIndex(b1, b2, CCallHelpers::TimesEight), b1);
++        getFromMegamorphicCache(jit, b1, notFound);
++        notFound.link(&jit);
++    }
+     missAtSite(jit, operation, 1, Returns::Value);
+     if (!missAndUpdateCache.empty()) {
+         // Bypass the front end that probes the megamorphic cache first: a hit there would keep the site's own cache from ever being
+-- 
+2.43.0
 
