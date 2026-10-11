@@ -6,13 +6,14 @@ Usage:
     tests/aot/microbench/run.py [--record] [--bench NAME]... [--runs N]
 
 Baselines are written to --baseline (default tests/aot/microbench/baseline.json) and
-keyed by the engine commit and the runtime's hash, so a result is only ever compared
-with one produced by the same engine. --record stores the run as the new baseline.
+keyed by the engine commit and the runtime's hash. A baseline from another engine is
+never compared silently: the run stops and says so, unless --allow-other-engine is
+given. --record stores this run as the baseline.
 
-Each program is built three ways: the stock runtime (reference output and JIT-on
-timing, not comparable), a bytecode build with the JIT off, and the ahead-of-time
-build. Only the ahead-of-time numbers are the subject; a change to the engine is
-worth taking if an AOT number drops without the checked output changing.
+Each program is built into an ahead-of-time image and timed by the CPU its own process
+tree uses, with the checked output compared between runs and against the baseline: a
+build that stops using compiled code, or that changes what the program prints, cannot
+pass. Baselines for more than one engine are kept as separate files.
 """
 
 import argparse
@@ -34,6 +35,7 @@ HOME = Path(os.path.expanduser("~"))
 ICU = HOME / "projects/pi-bolt/.toolchain/icu70/usr/lib/x86_64-linux-gnu"
 RUNTIME = HOME / "projects/pi-bolt/.work/runtime/bun"
 WEBKIT = HOME / "projects/pi-bolt/.work/webkit"
+RUN_TIMEOUT = 600  # seconds; a benchmark that hangs must not wedge the harness
 
 # The build of an ahead-of-time image, as scripts/build-pi.sh sets it.
 AOT_BUILD_ENV = {
@@ -64,7 +66,8 @@ def run_and_measure(argv, env, cwd):
     """Run argv, return (exit code, stdout, stderr, user+sys CPU seconds)."""
     before = resource.getrusage(resource.RUSAGE_CHILDREN)
     started = time.monotonic()
-    proc = subprocess.run(argv, env=env, cwd=cwd, capture_output=True, text=True)
+    proc = subprocess.run(argv, env=env, cwd=cwd, capture_output=True, text=True,
+                          timeout=RUN_TIMEOUT)
     elapsed = time.monotonic() - started
     after = resource.getrusage(resource.RUSAGE_CHILDREN)
     cpu = (after.ru_utime - before.ru_utime) + (after.ru_stime - before.ru_stime)
@@ -79,14 +82,17 @@ def sha256_of(path):
     return h.hexdigest()
 
 
-def git_head(repo):
+def engine_of(runtime):
+    """What a baseline belongs to. The commit alone is not enough: a runtime built
+    from an uncommitted tree would otherwise claim to be the commit it sits on."""
     try:
-        return subprocess.run(
-            ["git", "-C", str(repo), "rev-parse", "HEAD"],
-            capture_output=True, text=True, check=True,
-        ).stdout.strip()
+        head = subprocess.run(["git", "-C", str(WEBKIT), "rev-parse", "HEAD"],
+                              capture_output=True, text=True, check=True, timeout=60).stdout.strip()
+        dirty = subprocess.run(["git", "-C", str(WEBKIT), "status", "--porcelain"],
+                               capture_output=True, text=True, check=True, timeout=60).stdout.strip()
     except Exception:
-        return "unknown"
+        head, dirty = "unknown", ""
+    return {"webkit": head + ("-uncommitted" if dirty else ""), "runtime_sha256": sha256_of(runtime)}
 
 
 class Bench:
@@ -141,14 +147,20 @@ class Bench:
         return run_and_measure([str(self.aot_binary)], env, self.work)
 
     def measure(self, runs):
+        # One run with the runtime's own report on, to see that it took the image at
+        # all. It is not timed: the report goes to its stderr, but it is a different
+        # run from the measured ones.
+        code, out, err, _ = self.run_aot(verbose=True)
+        if code != 0:
+            return None, f"run failed ({code}): {(out + err)[-400:]}"
+        if "image registered: true" not in err:
+            return None, "the runtime did not register the image: this program ran without compiled code"
         user_cpus = []
         last = None
-        for i in range(runs):
-            code, out, err, cpu = self.run_aot(verbose=(i == 0))
+        for _ in range(runs):
+            code, out, err, cpu = self.run_aot()
             if code != 0:
                 return None, f"run failed ({code}): {(out + err)[-400:]}"
-            if i == 0 and "image registered: true" not in err:
-                return None, "the image was not registered: compiled code was not used"
             line = out.strip().splitlines()[-1].strip() if out.strip() else ""
             if last is None:
                 last = line
@@ -167,6 +179,8 @@ def main():
     parser.add_argument("--baseline", default=str(HERE / "baseline.json"))
     parser.add_argument("--typed-fields", action="store_true",
                         help="also build with useAOTTypedFields (needs a type table)")
+    parser.add_argument("--allow-other-engine", action="store_true",
+                        help="compare against a baseline recorded for another engine (says so in the output)")
     args = parser.parse_args()
 
     names = args.bench or BENCHES
@@ -176,7 +190,7 @@ def main():
     work = Path(os.environ.get("PIBOLT_WORK", PI_BOLT / ".work")) / "microbench"
     work.mkdir(parents=True, exist_ok=True)
 
-    engine = {"webkit": git_head(WEBKIT), "runtime_sha256": sha256_of(runtime)}
+    engine = engine_of(runtime)
     print(f"engine: webkit {engine['webkit'][:12]}  runtime {engine['runtime_sha256'][:16]}")
     print(f"runtime: {runtime} ({subprocess.run([str(runtime), '--version'], env=env_with_libraries(), capture_output=True, text=True).stdout.strip() if os.access(runtime, os.X_OK) else '?'})")
 
@@ -184,6 +198,15 @@ def main():
     baseline_path = Path(args.baseline)
     if baseline_path.exists():
         baseline = json.loads(baseline_path.read_text())
+
+    # A baseline is only about one engine. Comparing across engines would attribute
+    # another build's code layout to this change.
+    if baseline and baseline.get("engine") != engine and not (args.record or args.allow_other_engine):
+        sys.exit(f"{baseline_path} is a baseline for {baseline.get('engine')}, not for the engine at "
+                 f"{engine['webkit'][:12]}/{engine['runtime_sha256'][:16]}: pass --record to make a new one, "
+                 f"or --allow-other-engine to compare anyway")
+    if baseline and baseline.get("engine") != engine:
+        print(f"note: comparing against a baseline for {baseline.get('engine', {}).get('webkit', 'unknown')[:12]}")
 
     results = {}
     failed = False
@@ -214,8 +237,11 @@ def main():
         if previous and not args.record:
             delta = measured["min_cpu"] - previous["min_cpu"]
             percent = 100 * delta / previous["min_cpu"] if previous["min_cpu"] else 0
-            print(f"  vs baseline: {delta:+.3f}s ({percent:+.1f}%)"
-                  f"  [output {'same' if previous['output'] == measured['output'] else 'CHANGED'}]")
+            same_output = previous["output"] == measured["output"]
+            print(f"  vs baseline: {delta:+.3f}s ({percent:+.1f}%)  [output {'same' if same_output else 'CHANGED'}]")
+            if not same_output:
+                print(f"  FAIL the output is not what the baseline's was: {previous['output']!r}")
+                failed = True
 
     if args.record:
         merged = dict(baseline.get("results", {}))
