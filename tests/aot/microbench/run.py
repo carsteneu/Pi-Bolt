@@ -49,7 +49,11 @@ AOT_BUILD_ENV = {
     "BUN_JSC_useImmutableIntrinsics": "1",
 }
 
-BENCHES = ["prop-mono", "prop-poly", "prop-index", "call-heavy", "typed-field"]
+# prop-cold is about the first access at a site, when its slot is still empty, so its work is proportional to the number of sites and
+# is small beside a process's start: measure it with --runs high or on a larger fixture — gen-prop-cold.py writes one (prop-cold1000
+# is 64000 sites; it is kept out of the default set because its build is slow), and the pre-change and post-change binaries should be
+# alternated, because the difference is of the same order as the run-to-run spread.
+BENCHES = ["prop-mono", "prop-poly", "prop-index", "prop-cold", "call-heavy", "typed-field"]
 
 
 def env_with_libraries(extra=None):
