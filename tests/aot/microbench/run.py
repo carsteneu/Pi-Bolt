@@ -11,8 +11,12 @@ never compared silently: the run stops and says so, unless --allow-other-engine 
 given. --record stores this run as the baseline.
 
 Each program is built into an ahead-of-time image and timed by the CPU its own process
-tree uses, with the checked output compared between runs and against the baseline: a
-build that stops using compiled code, or that changes what the program prints, cannot
+tree uses. An untimed run with the runtime's own report on says whether the image was
+registered at all — that, not the output, is what proves compiled code was used: a
+program's output is a pure computation and a build that ran without compiled code prints
+it just the same (stock Bun prints every one of these figures byte-identically). What the
+checked output proves is the other half: the program still computes the same thing, run
+after run and against the recorded baseline, so a miscompile that changes a value cannot
 pass. Baselines for more than one engine are kept as separate files.
 """
 
